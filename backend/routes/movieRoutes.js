@@ -33,7 +33,7 @@ router.put(apiRoute.Put, (req, res) => {
 //@desc DELETE MOVIE
 //@route DELETE api/movies/id
 //@access Public
-router.put(apiRoute.Delete, (req, res) => {
+router.delete(apiRoute.Delete, (req, res) => {
     
 })
 
