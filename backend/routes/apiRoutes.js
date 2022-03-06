@@ -1,14 +1,14 @@
 //GET
-const Get = `${Get}`;
+const Get = "Overview";
 
 //GET:id
-const Id = `${id}`;
+const Id = "{id}";
 
 //POST
-const Post = `${Save}`;
+const Post = "${Save}";
 
 //PUT
-const Put = `${id}`;
+const Put = "{id}";
 
 //DELETE
-const Delete = `${id}`;
+const Delete = "{id}";
