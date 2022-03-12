@@ -54,3 +54,11 @@ const DeleteMovie = async (req, res) => {
         res.status(500).json({message: "Server DeleteMovie(id) error!"});
     }
 }
+
+module.exports = {
+    getAllMovies,
+    getMovieById,
+    AddMovie,
+    UpdateMovie,
+    DeleteMovie,
+}
