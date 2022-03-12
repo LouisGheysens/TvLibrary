@@ -7,7 +7,7 @@ const getAllMovies = async (req, res) => {
         res.json(movies);
     }catch(error) {
         console.error(error);
-        res.status(500).json({message: "Server error!"});
+        res.status(500).json({message: "Server getAll() error!"});
     }
 }
 
@@ -18,7 +18,7 @@ const getMovieById = async (req, res) => {
         res.json(movie);
     }catch(error) {
         console.error(error);
-        res.status(500).json({message: "Server error!"});
+        res.status(500).json({message: "Server Get(id) error!"});
     }
 }
 
@@ -29,7 +29,7 @@ const AddMovie = async (req, res) => {
         res.json(product);
     }catch(error) {
         console.error(error);
-        res.status(500).json({message: "Server error!"});
+        res.status(500).json({message: "Server AddMovie(movie) error!"});
     }
 }
 
@@ -40,7 +40,7 @@ const UpdateMovie = async (req, res) => {
         res.json(updatedProduct);
     }catch(error) {
         console.error(error);
-        res.status(500).json({message: "Server error!"});
+        res.status(500).json({message: "Server updateMovie(id, movie) error!"});
     }
 }
 
@@ -51,6 +51,6 @@ const DeleteMovie = async (req, res) => {
         res.json(deletedProduct);
     }catch(error) {
         console.error(error);
-        res.status(500).json({message: "Server error!"});
+        res.status(500).json({message: "Server DeleteMovie(id) error!"});
     }
 }
