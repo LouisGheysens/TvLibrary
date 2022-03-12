@@ -25,7 +25,11 @@ const getMovieById = async (req, res) => {
 //POST
 const AddMovie = async (req, res) => {
     try{
-        const product = await Movie.insertMany(req.params.body);
+        let product = new Movie(req.body);
+        product.save()
+        .then(x => {
+            x.send("Item saved to database!");
+        })
         res.json(product);
     }catch(error) {
         console.error(error);
@@ -36,7 +40,7 @@ const AddMovie = async (req, res) => {
 //PUT
 const UpdateMovie = async (req, res) => {
     try{
-        const updatedProduct = await Movie.findByIdAndUpdate(req.params.body);
+        const updatedProduct = await Movie.findByIdAndUpdate(req.params.id);
         res.json(updatedProduct);
     }catch(error) {
         console.error(error);
@@ -47,7 +51,7 @@ const UpdateMovie = async (req, res) => {
 //DELETE
 const DeleteMovie = async (req, res) => {
     try{
-        const deletedProduct = await Movie.findByIdAndRemove(req.params.body);
+        const deletedProduct = await Movie.findByIdAndRemove(req.params.id);
         res.json({ message: 'Deleted object'});
     }catch(error) {
         console.error(error);
