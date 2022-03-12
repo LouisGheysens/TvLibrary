@@ -5,10 +5,10 @@ const Get = "Overview";
 const Id = "{id}";
 
 //POST
-const Post = "${Save}";
+const Post = "Save";
 
-//PUT
-const Put = "{id}";
+//PATCH
+const Patch = "{id}";
 
 //DELETE
 const Delete = "{id}";

@@ -48,7 +48,7 @@ const UpdateMovie = async (req, res) => {
 const DeleteMovie = async (req, res) => {
     try{
         const deletedProduct = await Movie.findByIdAndRemove(req.params.body);
-        res.json(deletedProduct);
+        res.json({ message: 'Deleted object'});
     }catch(error) {
         console.error(error);
         res.status(500).json({message: "Server DeleteMovie(id) error!"});
