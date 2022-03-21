@@ -8,6 +8,7 @@ const { getAllMovies, getMovieById, AddMovie, UpdateMovie, DeleteMovie, } = requ
 //@route GET api/movies
 //@access Public
 router.get('/', getAllMovies);
+
 //@desc GET MOVIE
 //@route GET api/movies/id
 //@access Public
@@ -16,7 +17,7 @@ router.get('/:id', getMovieById);
 //@desc Post MOVIE
 //@route POST api/movies/save
 //@access Public
-router.post('/api/movies', AddMovie);
+router.post('/save', AddMovie);
 
 //@desc PUT MOVIE
 //@route PUT api/movies/id

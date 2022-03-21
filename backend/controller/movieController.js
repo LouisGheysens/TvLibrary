@@ -1,4 +1,7 @@
+const { db } = require('../models/Movie');
 const Movie = require('../models/Movie');
+const bodyParser = require('body-parser');
+
 
 //GET
 const getAllMovies = async (req, res) => {
@@ -25,15 +28,20 @@ const getMovieById = async (req, res) => {
 //POST
 const AddMovie = async (req, res) => {
     try{
-        let product = new Movie(req.body);
-        product.save()
-        .then(x => {
-            x.send("Item saved to database!");
+        const movie = new Movie({
+            name: req.body.name,
+            imageUrl: req.body.imageUrl,
+            description: req.body.description,
+            price: req.body.price,
+            duration: req.body.duration
         })
-        res.json(product);
+        movie.save()
+        .then(data => {
+            res.json(data);
+        });
     }catch(error) {
         console.error(error);
-        res.status(500).json({message: "Server AddMovie(movie) error!"});
+        res.status(400).json({message: "Server AddMovie(movie) error!"});
     }
 }
 
