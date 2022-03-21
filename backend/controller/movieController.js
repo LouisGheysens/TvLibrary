@@ -1,4 +1,4 @@
-const { db } = require('../models/Movie');
+const { db, off } = require('../models/Movie');
 const Movie = require('../models/Movie');
 const bodyParser = require('body-parser');
 
@@ -48,11 +48,23 @@ const AddMovie = async (req, res) => {
 //PUT
 const UpdateMovie = async (req, res) => {
     try{
-        const updatedProduct = await Movie.findByIdAndUpdate(req.params.id);
-        res.json(updatedProduct);
+        Movie.findOneAndUpdate({_id: req.params.id}, {
+            $set: {
+                name: req.body.name,
+                imageUrl: req.body.imageUrl,
+                description: req.body.description,
+                price: req.body.price,
+                duration: req.body.duration
+            }
+        })
+        .then(result => {
+            res.status(200).json({
+                updated_movie: result
+            })
+        })
     }catch(error) {
         console.error(error);
-        res.status(500).json({message: "Server updateMovie(id, movie) error!"});
+        res.status(400).json({message: "Server UpdateMovie(id) error!"});
     }
 }
 

@@ -3,7 +3,6 @@ const router = express.Router();
 const { getAllMovies, getMovieById, AddMovie, UpdateMovie, DeleteMovie, } = require('../controller/movieController')
 
 
-
 //@desc GET ALL MOVIES
 //@route GET api/movies
 //@access Public
@@ -20,9 +19,9 @@ router.get('/:id', getMovieById);
 router.post('/save', AddMovie);
 
 //@desc PUT MOVIE
-//@route PUT api/movies/id
+//@route PUT api/movies/update/id
 //@access Public
-router.put(':id', UpdateMovie);
+router.put('/:id', UpdateMovie);
 
 //@desc DELETE MOVIE
 //@route DELETE api/movies/id
