@@ -14,13 +14,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@angular/animations": "^13.3.0",
     "body-parser": "^1.19.2",
     "dotenv": "^16.0.0",
     "expresss": "^0.0.0",
     "mongoose": "^6.2.4",
+    "ngx-toastr": "^14.2.2",
     "path-to-regexp": "^6.2.0",
     "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.3.0"
+    "swagger-ui-express": "^4.3.0",
+    "toastr": "^2.1.4"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",

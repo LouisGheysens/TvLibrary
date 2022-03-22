@@ -1,0 +1,203 @@
+<!-- Content Wrapper -->
+<div id="wrapper" *ngIf="showLayout">
+
+  <!-- Sidebar Admin -->
+  <ul class="navbar-nav bg-light sidebar accordion" id="accordionSidebar" [ngClass]="{'toggled': !sideBarOpen}">
+
+      <div class="navbar-nav">
+          <!-- Sidebar - Brand -->
+          <a class="sidebar-brand d-flex align-items-center justify-content-center black" [routerLink]="['/']">
+              <div class="sidebar-brand-icon ">
+                  <div *ngIf="sideBarOpen">
+                      <img src="../../../../assets/images/scs.png" class="d-md-block d-none img-fluid">
+                      <img src="../../../../assets/images/scs.png" class="d-md-none" style="width: 70%;">
+                  </div>
+                  <div *ngIf="!sideBarOpen">
+                      <img src="../../../../assets/images/scs.png" style="width: 70%;">
+                  </div>
+              </div>
+              <!-- <div class="sidebar-brand-text mx-3">Elemax</div> -->
+          </a>
+
+          <!-- Divider -->
+          <hr class="sidebar-divider">
+
+          <div class="sidebar-heading">
+              Navigatie
+          </div>
+
+          <li class="nav-item" routerLinkActive="active" appAccessControl moduleType="crmApp.landen"
+              accessType="canRead">
+              <a class="nav-link" [routerLink]="['/landen']">
+                  <i class="fa fa-flag"></i>
+                  <span>Landen</span></a>
+          </li>
+
+          <li class="nav-item" routerLinkActive="active" appAccessControl moduleType="crmApp.sponsor"
+              accessType="canRead">
+              <a class="nav-link" [routerLink]="['/sponsor']">
+                  <i class="fa fa-trademark"></i>
+                  <span>Sponsor</span></a>
+          </li>
+
+          <li class="nav-item" routerLinkActive="active" appAccessControl moduleType="crmApp.sponsortype"
+              accessType="canRead">
+              <a class="nav-link" [routerLink]="['/sponsortype']">
+                  <i class="fa fa-vcard"></i>
+                  <span>SponsorType</span></a>
+          </li>
+
+          <li class="nav-item" routerLinkActive="active" appAccessControl moduleType="crmApp.club"
+              accessType="canRead">
+              <a class="nav-link" [routerLink]="['/club']">
+                  <i class="fa fa-globe"></i>
+                  <span>Club</span></a>
+          </li>
+
+
+          <li class="nav-item" routerLinkActive="active" appAccessControl moduleType="crmApp.playerphototype"
+              accessType="canRead">
+              <a class="nav-link" [routerLink]="['/playerphototype']">
+                  <i class="fa fa-camera"></i>
+                  <span>Fototypes voor spelers</span></a>
+          </li>
+
+          <li class="nav-item" routerLinkActive="active" appAccessControl moduleType="crmApp.player"
+          accessType="canRead">
+          <a class="nav-link" [routerLink]="['/player']">
+              <i class="fa fa-users"></i>
+              <span>Spelers</span></a>
+      </li>
+
+
+          <!-- Divider -->
+          <hr class="sidebar-divider" appAccessControl moduleType="crmApp.Security" accessType="canRead">
+
+          <div class="sidebar-heading" appAccessControl moduleType="crmApp.Security" accessType="canRead">
+              Beheer
+          </div>
+
+          <li class="nav-item" routerLinkActive="active" appAccessControl moduleType="crmApp.Setting"
+              accessType="canRead">
+              <a class="nav-link" [routerLink]="['/instellingen']">
+                  <i class="fas fa-fw fa-cog"></i>
+                  <span>Instellingen</span></a>
+          </li>
+
+
+          <!-- Divider -->
+          <hr class="sidebar-divider d-none d-md-block">
+          <!-- Sidebar Toggler (Sidebar) -->
+          <div class="text-center d-none d-md-inline">
+              <button class="rounded-circle border-0" id="sidebarToggle" (click)="clickSideBar()"></button>
+          </div>
+
+
+          <div class="text-center d-none d-md-inline logout">
+              <button class="btn-circle btn-dark btn nav-link cursor-pointer" (click)="logout()">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw"></i>
+              </button>
+          </div>
+      </div>
+
+
+
+  </ul>
+  <!-- End of Sidebar -->
+
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column" *ngIf="user$ | async">
+      <!-- Main Content -->
+      <div id="content">
+
+          <!-- Topbar -->
+          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-3 static-top shadow">
+
+              <!-- Sidebar Toggle (Topbar) -->
+              <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3"
+                  (click)="sideBarOpen = !sideBarOpen">
+                  <i *ngIf="!sideBarOpen" class="fa fa-bars"></i>
+                  <i *ngIf="sideBarOpen" class="fas fa-times"></i>
+              </button>
+
+              <span class="invisible" style="width: 14.5em;"></span>
+
+              <!-- Topbar Navbar -->
+              <ul class="navbar-nav ml-auto">
+
+                  <div class="topbar-divider d-none d-sm-block"></div>
+
+                  <li class="nav-item dropdown no-arrow" ngbDropdown *ngIf="(user)"
+                      routerLinkActive="active">
+                      <a class="nav-link" ngbDropdownToggle id="userDropdown" role="button">
+                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.data.firstName }} {{ user.data.lastName }}</span>
+                      </a>
+                      <!-- Dropdown - User Information - Clear cache -->
+                      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                          aria-labelledby="userDropdown">
+                          <a class="dropdown-item cursor-pointer" *ngIf="user.data.id"
+                              appAccessControl moduleType="crmApp.Account" accessType="canRead">
+                              <!-- <i class="fas fa-user-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Account -->
+                          </a>
+                          <a class="dropdown-item cursor-pointer" (click)="logout()">
+                              <i class=" fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Afmelden
+                          </a>
+                      </div>
+                  </li>
+
+              </ul>
+
+          </nav>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+              <nav aria-label="breadcrumb" *ngIf="breadcrumbs && breadcrumbs.length">
+                  <ol class="breadcrumb">
+                      <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs; trackBy: trackByFunc"
+                          [ngClass]="{ 'active': breadcrumb.active }">
+                          <a *ngIf="!breadcrumb.active" [routerLink]="breadcrumb.route">{{ breadcrumb.title }}</a>
+                          <span *ngIf="breadcrumb.active">{{ breadcrumb.title }}</span>
+                      </li>
+                  </ol>
+              </nav>
+              <ng-container *ngTemplateOutlet="content"></ng-container>
+          </div>
+
+      </div>
+      <!-- /.container-fluid -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white text">
+          <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                  <span>Copyright &copy; Progressive {{ year }}</span>
+              </div>
+          </div>
+      </footer>
+      <!-- End of Footer -->
+
+  </div>
+  <!-- End of Main Content -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+<div *ngIf="loading">
+  <div class="d-flex justify-content-center align-items-center min-vh-100 vh-100">
+      <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+          <span class="sr-only">Loading...</span>
+      </div>
+  </div>
+</div>
+
+<ng-container *ngIf="!showLayout">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</ng-container>
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const movieRoutes = require('./routes/movieRoutes');
+const userRoutes = require('./routes/userRoutes');
 const bodyParser = require('body-parser');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
 app.use('/api/movies', movieRoutes);
+app.use('/api/users', userRoutes);
 
 const options = {
     definition: {
